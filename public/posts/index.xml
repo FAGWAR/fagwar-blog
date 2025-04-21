@@ -22,12 +22,21 @@
 &lt;p&gt;A bios programmer with clip (CH341a, Raspberry Pi (pico))&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
+&lt;p&gt;A computer running GNU/Linux&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;A screwdriver&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;step-1-take-apart-your-t480&#34;&gt;Step 1. Take apart your T480&lt;/h2&gt;
-&lt;p&gt;Todo. add pictures&lt;/p&gt;
-&lt;h2 id=&#34;step-2-dump-your-bios&#34;&gt;Step 2. Dump your bios&lt;/h2&gt;</description>
+&lt;h2 id=&#34;step-1-update-the-bios-on-your-t480-using-a-usb-stick&#34;&gt;Step 1. Update the bios on your T480 using a USB stick&lt;/h2&gt;
+&lt;h3 id=&#34;making-a-bootable-bios-update-usb&#34;&gt;Making a bootable bios update USB&lt;/h3&gt;
+&lt;p&gt;Go to &lt;a href=&#34;https://pcsupport.lenovo.com/us/en/products/laptops-and-netbooks/thinkpad-t-series-laptops/thinkpad-t480-type-20l5-20l6/downloads/ds502355&#34;&gt;this page&lt;/a&gt; and download the latest iso availabe.&lt;/p&gt;
+&lt;p&gt;Download eltorito from GitHub.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;curl -LO https://github.com/rainer042/geteltorito/raw/refs/heads/main/geteltorito.pl&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;make it executable&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;chmod +x geteltorito.pl&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Make a bootable img from the iso&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;./geteltorito -o bios.img /path/to/image.iso&lt;/code&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

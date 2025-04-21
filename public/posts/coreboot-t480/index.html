@@ -16,12 +16,21 @@ A ThinkPad T480
 A bios programmer with clip (CH341a, Raspberry Pi (pico))
 
 
+A computer running GNU/Linux
+
+
 A screwdriver
 
 
-Step 1. Take apart your T480
-Todo. add pictures
-Step 2. Dump your bios">
+Step 1. Update the bios on your T480 using a USB stick
+Making a bootable bios update USB
+Go to this page and download the latest iso availabe.
+Download eltorito from GitHub.
+curl -LO https://github.com/rainer042/geteltorito/raw/refs/heads/main/geteltorito.pl
+make it executable
+chmod &#43;x geteltorito.pl
+Make a bootable img from the iso
+./geteltorito -o bios.img /path/to/image.iso">
 <meta name="author" content="">
 <link rel="canonical" href="//localhost:1313/posts/coreboot-t480/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.34d10907d1b5d332ea4b088a95afd0efa9d937fdbcdac60d7c93a386b3d3f448.css" integrity="sha256-NNEJB9G10zLqSwiKla/Q76nZN/282sYNfJOjhrPT9Eg=" rel="preload stylesheet" as="style">
@@ -141,12 +150,48 @@ Step 2. Dump your bios">
 <p>A bios programmer with clip (CH341a, Raspberry Pi (pico))</p>
 </li>
 <li>
+<p>A computer running GNU/Linux</p>
+</li>
+<li>
 <p>A screwdriver</p>
 </li>
 </ul>
-<h2 id="step-1-take-apart-your-t480">Step 1. Take apart your T480<a hidden class="anchor" aria-hidden="true" href="#step-1-take-apart-your-t480">#</a></h2>
-<p>Todo. add pictures</p>
-<h2 id="step-2-dump-your-bios">Step 2. Dump your bios<a hidden class="anchor" aria-hidden="true" href="#step-2-dump-your-bios">#</a></h2>
+<h2 id="step-1-update-the-bios-on-your-t480-using-a-usb-stick">Step 1. Update the bios on your T480 using a USB stick<a hidden class="anchor" aria-hidden="true" href="#step-1-update-the-bios-on-your-t480-using-a-usb-stick">#</a></h2>
+<h3 id="making-a-bootable-bios-update-usb">Making a bootable bios update USB<a hidden class="anchor" aria-hidden="true" href="#making-a-bootable-bios-update-usb">#</a></h3>
+<p>Go to <a href="https://pcsupport.lenovo.com/us/en/products/laptops-and-netbooks/thinkpad-t-series-laptops/thinkpad-t480-type-20l5-20l6/downloads/ds502355">this page</a> and download the latest iso availabe.</p>
+<p>Download eltorito from GitHub.</p>
+<p><code>curl -LO https://github.com/rainer042/geteltorito/raw/refs/heads/main/geteltorito.pl</code></p>
+<p>make it executable</p>
+<p><code>chmod +x geteltorito.pl</code></p>
+<p>Make a bootable img from the iso</p>
+<p><code>./geteltorito -o bios.img /path/to/image.iso</code></p>
+<p>Find your USB stick using lsblk</p>
+<pre tabindex="0"><code>                          [I] ye@desktop ~ [127]&gt; lsblk
+                          NAME        MAJ:MIN RM  SIZE RO TYPE  MOUNTPOINTS
+Most likely this one -&gt;   sda           8:0    1 14.3G  0 disk  
+                            ├─sda1        8:1    1  512M  0 part  
+                            └─sda2        8:2    1 13.8G  0 part  
+                            zram0       253:0    0  7.8G  0 disk  [SWAP]
+                            nvme0n1     259:0    0  1.8T  0 disk  
+                            ├─nvme0n1p1 259:1    0    1G  0 part  /boot
+                            └─nvme0n1p2 259:2    0  1.8T  0 part  
+                              └─root    254:0    0  1.8T  0 crypt /home
+                          [I] ye@desktop ~&gt;
+</code></pre><p>Burn it to a USB stick</p>
+<p><code>dd if=bios.img of=/dev/sdX bs=1M status=progress conv=fsync</code></p>
+<h3 id="installing-the-bios-update-from-usb">Installing the BIOS update from usb<a hidden class="anchor" aria-hidden="true" href="#installing-the-bios-update-from-usb">#</a></h3>
+<p><em><strong>Make sure your laptop is plugged in and charging, with a battery connected</strong></em></p>
+<p>Turn on your T480 and spam the &lt;<strong>F12</strong>&gt; key</p>
+<p>&lt; add picture of boot menu &gt;</p>
+<p>Choose your USB stick from this list. It should boot into a screen like</p>
+<p>&lt; add picture of bios update tool &gt;</p>
+<h2 id="step-2-take-apart-your-t480">Step 2. Take apart your T480<a hidden class="anchor" aria-hidden="true" href="#step-2-take-apart-your-t480">#</a></h2>
+<p>Take out your battery and all of the screws at the bottom of the laptop</p>
+<p>&lt; picture of screws highlighted and battery taken out &gt;</p>
+<p>Take off the bottom case, it&rsquo;s held in with clips - so use a spudger and be careful taking it off or you <em>will</em> snap some off them off</p>
+<p>&lt; picture of bottom of laptop &gt;</p>
+<h2 id="step-3-dump-your-bios">Step 3. Dump your bios<a hidden class="anchor" aria-hidden="true" href="#step-3-dump-your-bios">#</a></h2>
+<p>Put the clip</p>
 
 
   </div>

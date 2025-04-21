@@ -122,9 +122,16 @@
   <div class="entry-content">
     <p>Requirements A ThinkPad T480
 A bios programmer with clip (CH341a, Raspberry Pi (pico))
+A computer running GNU/Linux
 A screwdriver
-Step 1. Take apart your T480 Todo. add pictures
-Step 2. Dump your bios</p>
+Step 1. Update the bios on your T480 using a USB stick Making a bootable bios update USB Go to this page and download the latest iso availabe.
+Download eltorito from GitHub.
+curl -LO https://github.com/rainer042/geteltorito/raw/refs/heads/main/geteltorito.pl
+make it executable
+chmod &#43;x geteltorito.pl
+Make a bootable img from the iso
+./geteltorito -o bios.img /path/to/image.iso
+...</p>
   </div>
   <footer class="entry-footer"><span title='2025-04-20 22:46:00 +0100 BST'>April 20, 2025</span></footer>
   <a class="entry-link" aria-label="post link to Coreboot T480" href="//localhost:1313/posts/coreboot-t480/"></a>
